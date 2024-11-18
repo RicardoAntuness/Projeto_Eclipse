@@ -1,5 +1,7 @@
 package br.edu.atitus.apisample.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import br.edu.atitus.apisample.entities.UserEntity;
 import br.edu.atitus.apisample.repositories.UserRepository;
@@ -36,11 +38,16 @@ public class UserService {
 
         if (!isValidEmail(newUser.getEmail())) {
             throw new Exception("Email Inválido!");
+            
         }
 
         return newUser;
     }
 
+    public List<UserEntity> findAll() throws Exception {
+    	return repository.findAll();
+    }
+ 
     private boolean isValidEmail(String email) {
         return email != null && email.matches(EMAIL_REGEX);
     }
