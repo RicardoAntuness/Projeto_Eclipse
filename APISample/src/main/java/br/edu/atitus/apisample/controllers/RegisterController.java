@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -72,6 +73,12 @@ public class RegisterController {
 		
 		return ResponseEntity.ok(register);
 		}
+	
+	@DeleteMapping ("/{id}")
+	public ResponseEntity<String> deleteRegister(@PathVariable UUID id) throws Exception{
+		service.deleteById(id);
+		return ResponseEntity.ok("Registro deletado!");
+	}
 	
 	
 	@ExceptionHandler(Exception.class)
